@@ -1,0 +1,30 @@
+{
+  "name": "twitter.ts",
+  "version": "0.0.1",
+  "description": "Wrapper for the Twitter API with typings.",
+  "main": "dist/twitter.js",
+  "types": "dist/twitter.d.ts",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "prepublishOnly": "tsc"
+  },
+  "keywords": [
+    "twitter",
+    "typescript",
+    "ts",
+    "api"
+  ],
+  "author": "Tenpi",
+  "license": "MIT",
+  "devDependencies": {
+    "@tenpi/tslint": "^1.0.5",
+    "@types/node": "^12.11.7",
+    "dotenv": "^8.2.0",
+    "typescript": "^3.6.4",
+    "@types/request-promise-native": "^1.0.17"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
+  }
+}
