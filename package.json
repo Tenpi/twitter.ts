@@ -18,10 +18,16 @@
   "license": "MIT",
   "devDependencies": {
     "@tenpi/tslint": "^1.0.5",
+    "@tenpi/typedoc": "0.0.3",
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.7",
+    "@types/request-promise-native": "^1.0.17",
+    "chai": "^4.2.0",
     "dotenv": "^8.2.0",
-    "typescript": "^3.6.4",
-    "@types/request-promise-native": "^1.0.17"
+    "mocha": "^7.0.1",
+    "typedoc": "^0.16.9",
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "request": "^2.88.0",

@@ -98,3 +98,103 @@ export interface TwitterUserSearchParams {
     count?: number
     include_entities?: boolean
 }
+
+export interface TwitterIDs {
+    ids: string[]
+    next_cursor: number
+    next_cursor_str: string
+    previous_cursor: number
+    previous_cursor_str: string
+    total_count: number | null
+}
+
+export interface TwitterUserParams {
+    user_id?: number
+    screen_name?: string
+    cursor?: number
+    count?: number
+}
+
+export interface TwitterIDParams extends TwitterUserParams {
+    stringify_ids?: boolean
+}
+
+export interface TwitterFriendListParams extends TwitterUserParams {
+    skip_status?: boolean
+    include_user_entities?: boolean
+}
+
+export interface TwitterUserSearch {
+    users: TwitterUser[]
+    next_cursor: number
+    next_cursor_str: string
+    previous_cursor: number
+    previous_cursor_str: string
+    total_count: number | null
+}
+
+export interface TwitterFriendshipParams {
+    cursor?: number
+    stringify_ids?: boolean
+}
+
+export interface TwitterUsernameParams {
+    screen_name?: string
+    user_id?: number
+}
+
+export type TwitterUserConnections = "following" | "following_requested" | "followed_by" | "none" | "blocking" | "muting"
+
+export interface TwitterUserRelationship {
+    name: string
+    screen_name: string
+    id: number
+    id_str: string
+    connections: TwitterUserConnections[]
+}
+
+export interface TwitterShowParams {
+    source_id?: number
+    source_screen_name?: string
+    target_id?: number
+    target_screen_name?: string
+}
+
+export interface TwitterUserFriendship {
+    relationship: {
+        source: {
+            id: number
+            id_str: string
+            screen_name: string
+            following: boolean
+            followed_by: boolean
+            live_following: boolean
+            following_received: boolean
+            following_requested: boolean
+            notifications_enabled: boolean
+            can_dm: boolean
+            blocking: boolean
+            blocked_by: boolean
+            muting: boolean
+            want_retweets: boolean
+            all_replies: boolean
+            marked_spam: boolean
+        },
+        target: {
+            id: number
+            id_str: string
+            screen_name: string
+            following: boolean
+            followed_by: boolean
+            following_received: boolean
+            following_requested: boolean
+        }
+    }
+}
+
+export interface TwitterUserLookupParams {
+    screen_name?: string
+    user_id?: number
+    include_entities?: boolean
+    tweet_mode?: "compact" | "extended"
+}

@@ -2,24 +2,35 @@ import crypto from "crypto"
 import {stringify} from "querystring"
 import request from "request-promise-native"
 const apiURL = "https://api.twitter.com/1.1/"
+const streamURL = "https://stream.twitter.com/1.1/"
+import Twitter from "./twitter"
 
 export default class API {
-    constructor(private readonly credentials: {
-        consumerKey: string
-        consumerSecret: string
-        accessToken: string
-        accessSecret: string
-    }) {}
+    constructor() {}
 
     public get = async (endpoint: string, params?: any) => {
         if (!params) params = {}
         if (endpoint.startsWith("/")) endpoint = endpoint.slice(1)
         endpoint = apiURL + endpoint + ".json"
         const oauth = {
-            consumer_key: this.credentials.consumerKey,
-            consumer_secret: this.credentials.consumerSecret,
-            token: this.credentials.accessToken,
-            token_secret: this.credentials.accessSecret
+            consumer_key: Twitter.consumerKey,
+            consumer_secret: Twitter.consumerSecret,
+            token: Twitter.accessToken,
+            token_secret: Twitter.accessSecret
+        }
+        const response = await request.get(endpoint, {oauth, qs: params})
+        return JSON.parse(response)
+    }
+
+    public getStream = async (endpoint: string, params?: any) => {
+        if (!params) params = {}
+        if (endpoint.startsWith("/")) endpoint = endpoint.slice(1)
+        endpoint = streamURL + endpoint + ".json"
+        const oauth = {
+            consumer_key: Twitter.consumerKey,
+            consumer_secret: Twitter.consumerSecret,
+            token: Twitter.accessToken,
+            token_secret: Twitter.accessSecret
         }
         const response = await request.get(endpoint, {oauth, qs: params})
         return JSON.parse(response)
@@ -30,10 +41,24 @@ export default class API {
         if (endpoint.startsWith("/")) endpoint = endpoint.slice(1)
         endpoint = apiURL + endpoint + ".json"
         const oauth = {
-            consumer_key: this.credentials.consumerKey,
-            consumer_secret: this.credentials.consumerSecret,
-            token: this.credentials.accessToken,
-            token_secret: this.credentials.accessSecret
+            consumer_key: Twitter.consumerKey,
+            consumer_secret: Twitter.consumerSecret,
+            token: Twitter.accessToken,
+            token_secret: Twitter.accessSecret
+        }
+        const response = await request.post(endpoint, {oauth, qs: params})
+        return JSON.parse(response)
+    }
+
+    public postStream = async (endpoint: string, params?: any) => {
+        if (!params) params = {}
+        if (endpoint.startsWith("/")) endpoint = endpoint.slice(1)
+        endpoint = streamURL + endpoint + ".json"
+        const oauth = {
+            consumer_key: Twitter.consumerKey,
+            consumer_secret: Twitter.consumerSecret,
+            token: Twitter.accessToken,
+            token_secret: Twitter.accessSecret
         }
         const response = await request.post(endpoint, {oauth, qs: params})
         return JSON.parse(response)

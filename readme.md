@@ -8,4 +8,6 @@
 </div>
 
 ### About
-wip
+This is a wrapper for the Twitter API. 
+
+WIP

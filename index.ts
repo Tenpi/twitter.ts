@@ -1,4 +1,4 @@
-import Twitter from "./Twitter"
+import Twitter from "./twitter"
 
 require("dotenv").config();
 (async () => {
@@ -8,6 +8,6 @@ require("dotenv").config();
         accessToken: process.env.TWITTER_ACCESS_TOKEN,
         accessSecret: process.env.TWITTER_ACCESS_SECRET
     })
-    const result = await twitter.users.search({q: "tenpi"})
-    console.log(result[0].entities.url.urls[0].display_url)
+    const result = await twitter.lists.list({screen_name: "realDonaldTrump"})
+    console.log(result)
 })()
